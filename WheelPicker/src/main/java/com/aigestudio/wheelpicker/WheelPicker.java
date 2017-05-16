@@ -719,7 +719,11 @@ public class WheelPicker extends View implements IDebug, IWheelPicker, Runnable 
                 // 滚动内容
                 // Scroll WheelPicker's content
                 float move = event.getY() - mLastPointY;
-                if (Math.abs(move) < 1) break;
+                
+                //修复低分辨率屏幕下的抖动bug
+//                if (Math.abs(move) < 1) break;
+                if (Math.abs(move) < 2) break;
+                
                 mScrollOffsetY += move;
                 mLastPointY = (int) event.getY();
                 invalidate();
